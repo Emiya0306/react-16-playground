@@ -1,19 +1,32 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import ReactDOM from 'react-dom';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
 
-const root = ReactDOM.createRoot(
+import './index.css';
+import SetState from './views/SetState';
+import SetContext from './views/SetContext';
+import SetTimeout from './views/SetTimeout';
+import PageMemo from "./views/PageMemo";
+import SetComplexState from "./views/SetComplexState";
+
+ReactDOM.render(
+  <div className="app">
+    <BrowserRouter>
+      <nav>
+        <Link to="/set-timeout">SetTimeout</Link>
+        <Link to="/set-state">SetState</Link>
+        <Link to="/set-complex-state">SetComplexState</Link>
+        <Link to="/memo">Memo</Link>
+        <Link to="/set-context">SetContext</Link>
+      </nav>
+      <Switch>
+        <Route path="/set-timeout" component={() => <SetTimeout />} />
+        <Route path="/set-state" component={() => <SetState />} />
+        <Route path="/set-complex-state" component={() => <SetComplexState />} />
+        <Route path="/memo" component={() => <PageMemo />} />
+        <Route path="/set-context" component={() => <SetContext />} />
+      </Switch>
+    </BrowserRouter>
+  </div>,
   document.getElementById('root') as HTMLElement
 );
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
